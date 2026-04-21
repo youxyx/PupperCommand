@@ -1,6 +1,6 @@
 # PupperCommand
 
-# 在原仓库基础上修改成自动山寨PS3手柄用的服务
+## 在原仓库基础上修改成手上的ShanWan山寨PS3手柄用的服务
 
 ## Installation
 ```shell
