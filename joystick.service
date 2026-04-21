@@ -1,13 +1,19 @@
 [Unit]
-Description=Pupper Joystick service
+Description=Pupper PS3 Bluetooth Joystick Service
+After=bluetooth.target multi-user.target  # 等待蓝牙服务启动
 
 [Service]
+User=pi
+WorkingDirectory=/home/pi/PupperCommand
 ExecStart=/usr/bin/python3 /home/pi/PupperCommand/joystick.py
+
+# 自动重启（手柄断开重连后自动恢复）
 Restart=always
-RestartSec=5
-KillSignal=2
-TimeoutStopSec=10
-RemainAfterExit=true
+RestartSec=2
+
+# 手柄服务专用配置
+KillSignal=SIGINT
+TimeoutStopSec=5
 
 [Install]
 WantedBy=multi-user.target
