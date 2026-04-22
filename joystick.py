@@ -1,4 +1,8 @@
 # 适配：原生蓝牙PS3手柄(BlueZ sixaxis补丁) | PupperCommand专用
+import os
+# 【关键修复】设置 pygame 使用虚拟视频驱动，解决无显示器报错
+os.environ["SDL_VIDEODRIVER"] = "dummy"
+
 from UDPComms import Publisher, Subscriber, timeout
 import pygame
 import time
@@ -46,11 +50,11 @@ while True:
     L1 = joystick.get_button(4)
     R1 = joystick.get_button(5)
 
-    # 功能键 □×○△
-    square = joystick.get_button(0)
-    x = joystick.get_button(1)
-    circle = joystick.get_button(2)
-    triangle = joystick.get_button(3)
+    # 功能键 □×○△ (注意：原装PS3手柄映射通常是 0:×, 1:○, 2:△, 3:□，如果不对请互换)
+    square = joystick.get_button(3)    # 原装PS3通常是3
+    x = joystick.get_button(0)         # 原装PS3通常是0
+    circle = joystick.get_button(1)    # 原装PS3通常是1
+    triangle = joystick.get_button(2)  # 原装PS3通常是2
 
     # 方向键
     hat = joystick.get_hat(0)
